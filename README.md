@@ -11,7 +11,7 @@ If the uploaded data includes true labels, the system will evaluate prediction a
 ## Data Source
 
 Kaggle - Credit Card Fraud Detection (2023)  
-https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
+[https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud](https://www.kaggle.com/datasets/nelgiriyewithana/credit-card-fraud-detection-dataset-2023/data)
 
 - Features: `V1` to `V28` (anonymized)
 - `Amount`: transaction amount
