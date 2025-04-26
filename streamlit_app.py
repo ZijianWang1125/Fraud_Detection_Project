@@ -2,7 +2,7 @@
 # Open a terminal and navigate to the project directory.
 # Ensure that your Python virtual environment is activated.
 # Run the following command:
-# “streamlit run app/streamlit_app.py”
+# streamlit run app/streamlit_app.py
 
 import streamlit as st
 import pandas as pd
@@ -12,15 +12,11 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.metrics import accuracy_score, confusion_matrix
 
-# Add model folder to path (safe for deployment)
+# Add model folder to sys.path (safe for deployment)
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "model"))
 
-# Dynamically import aux_1 instead of model_utils
-import importlib.util
-aux_path = os.path.join(os.path.dirname(__file__), "..", "model", "aux_1.py")
-spec = importlib.util.spec_from_file_location("aux_1", aux_path)
-aux_1 = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(aux_1)
+# Direct import of aux_1
+import aux_1
 
 # Load trained model and scaler
 @st.cache_resource
