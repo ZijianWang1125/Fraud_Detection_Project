@@ -15,7 +15,7 @@ It includes model training, evaluation, deployment of a Streamlit web applicatio
 ---
 
 ## Dataset Description
-
+- **Link:** https://www.kaggle.com/datasets/nelgiriyewithana/credit-card-fraud-detection-dataset-2023/data
 - **Source:** Kaggle Credit Card Fraud Detection dataset (2023 version).
 - **Records:** 568,630 transactions.
 - **Features:** V1–V28 (anonymized PCA components) and Amount.
