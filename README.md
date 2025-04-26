@@ -1,62 +1,100 @@
 # Real-Time Credit Card Fraud Detection
 
-## Project Description
-
-This project implements a real-time fraud detection system for credit card transactions using machine learning.  
-Users can upload transaction data and receive immediate fraud predictions through a web-based interface.  
-If the uploaded data includes true labels, the system will evaluate prediction accuracy and display metrics.
+This project builds a real-time fraud detection system using machine learning techniques.  
+It includes model training, evaluation, deployment of a Streamlit web application, and full prediction functionality.
 
 ---
 
-## Data Source
+## Project Description
 
-Kaggle - Credit Card Fraud Detection (2023)  
-[https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud](https://www.kaggle.com/datasets/nelgiriyewithana/credit-card-fraud-detection-dataset-2023/data)
+- Developed a baseline fraud detection model using Logistic Regression and Random Forest.
+- Applied feature preprocessing, variance thresholding, and SMOTE oversampling.
+- Conducted hyperparameter tuning via GridSearchCV to optimize model performance.
+- Deployed an interactive Streamlit application for real-time fraud prediction based on uploaded CSV files.
 
-- Features: `V1` to `V28` (anonymized)
-- `Amount`: transaction amount
-- `Class`: 0 = normal, 1 = fraud  
-- The dataset is artificially balanced for equal class distribution.
+---
+
+## Dataset Description
+
+- **Source:** Kaggle Credit Card Fraud Detection dataset (2023 version).
+- **Records:** 568,630 transactions.
+- **Features:** V1–V28 (anonymized PCA components) and Amount.
+- **Target:** `Class` (0 = Normal, 1 = Fraud).
+
+The dataset used here is artificially balanced for initial training purposes.
 
 ---
 
 ## Required Packages
 
-Install all required packages with:
+- pandas
+- scikit-learn
+- imbalanced-learn
+- matplotlib
+- seaborn
+- joblib
+- streamlit
 
-```
-pip install pandas numpy scikit-learn streamlit joblib matplotlib seaborn
-```
+Install them using:
 
-Dependencies:
-- `pandas`
-- `numpy`
-- `scikit-learn`
-- `streamlit`
-- `joblib`
-- `matplotlib`
-- `seaborn`
+```bash
+pip install -r requirements.txt
+```
 
 ---
 
-## How to Run
+## How to Run the Code
 
-1. **Train and save the model:**
+### 1. Training the Model
 
+```bash
+python main.py
 ```
-python model/model_utils.py
-```
+- In `main.py`, set:
+  - `mode = "train"` for training
+  - Configure options like `use_smote`, `use_gridsearch`, and `use_random_forest` as needed.
 
-2. **Launch the Streamlit web app:**
+The trained model (`fraud_model.pkl`) and scaler (`scaler.pkl`) will be saved in the `model/` directory.
 
+---
+
+### 2. Predicting New Data
+
+```bash
+python main.py
 ```
+- In `main.py`, set:
+  - `mode = "predict"` for making predictions.
+
+Predicted results will be saved as `predictions.csv`.
+
+---
+
+### 3. Running the Streamlit Web Application
+
+```bash
 streamlit run app/streamlit_app.py
 ```
+- Upload a CSV file containing V1–V28 and Amount columns.
+- Instantly receive fraud prediction results.
+- Download prediction output if needed.
 
-3. **Use the Web Interface:**
+---
 
-- Upload a `.csv` file with columns: `V1` to `V28`, and `Amount`
-- (Optional) Include the `Class` column for accuracy evaluation
-- View fraud predictions and download labeled results
+## Current Improvements
+
+- Added variance-based feature filtering.
+- Applied SMOTE to address class imbalance.
+- Performed hyperparameter tuning for Logistic Regression.
+- Supported Random Forest as an alternative model.
+- Enabled customizable classification thresholds.
+
+---
+
+## Future Work
+
+- Explore adding time-based and behavioral features.
+- Implement online learning for continuous fraud detection updates.
+- Expand evaluation on real-world imbalanced datasets.
 
 ---
