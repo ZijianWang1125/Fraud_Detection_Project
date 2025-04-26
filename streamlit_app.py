@@ -1,3 +1,9 @@
+# To run the Streamlit web application locally, follow these steps:
+# Open a terminal and navigate to the project directory.
+# Ensure that your Python virtual environment is activated.
+# Run the following command:
+# “streamlit run app/streamlit_app.py”
+
 import streamlit as st
 import pandas as pd
 import os
@@ -8,12 +14,18 @@ from sklearn.metrics import accuracy_score, confusion_matrix
 
 # Add model folder to path (safe for deployment)
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "model"))
-from model_utils import load_model_and_scaler
+
+# Dynamically import aux_1 instead of model_utils
+import importlib.util
+aux_path = os.path.join(os.path.dirname(__file__), "..", "model", "aux_1.py")
+spec = importlib.util.spec_from_file_location("aux_1", aux_path)
+aux_1 = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(aux_1)
 
 # Load trained model and scaler
 @st.cache_resource
 def load_model():
-    model, scaler = load_model_and_scaler()
+    model, scaler = aux_1.load_model_and_scaler()
     return model, scaler
 
 # UI setup
