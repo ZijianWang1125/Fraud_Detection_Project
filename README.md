@@ -90,11 +90,3 @@ streamlit run app/streamlit_app.py
 - Enabled customizable classification thresholds.
 
 ---
-
-## Future Work
-
-- Explore adding time-based and behavioral features.
-- Implement online learning for continuous fraud detection updates.
-- Expand evaluation on real-world imbalanced datasets.
-
----
