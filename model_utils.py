@@ -56,9 +56,11 @@ def load_model_and_scaler():
 # Local training entry point
 if __name__ == "__main__":
     print("Running local training and evaluation...\n")
-    X, y = load_data("../data/creditcard_2023.csv")
+    data_path = os.path.join(BASE_DIR, "..", "data", "creditcard_2023.csv")
+    X, y = load_data(data_path)
     X_scaled, scaler = preprocess_data(X)
     X_train, X_test, y_train, y_test = split_data(X_scaled, y)
     model = train_model(X_train, y_train)
     evaluate_model(model, X_test, y_test)
     save_model(model, scaler)
+    
